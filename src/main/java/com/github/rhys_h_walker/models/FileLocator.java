@@ -22,11 +22,12 @@ public class FileLocator {
         File location = new File(directory);
 
         if (location.listFiles() == null) {
-            System.err.println("Location either did not exist of was null");
+            System.err.println("Location either did not exist or was null");
+            return new File[0]; // Return empty array instead of null
         }
 
         File[] filtered = location.listFiles(file -> FileUtilities.getExtension(file.toString()).equals(".mp3"));
-        return filtered;
+        return filtered != null ? filtered : new File[0];
     }
 
     /**

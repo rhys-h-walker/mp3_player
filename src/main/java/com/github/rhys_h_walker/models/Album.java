@@ -1,11 +1,15 @@
 package com.github.rhys_h_walker.models;
 
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.util.Arrays;
 
 import org.jaudiotagger.audio.AudioFileIO;
 import org.jaudiotagger.tag.FieldKey;
 import org.jaudiotagger.tag.Tag;
+import org.jaudiotagger.tag.images.Artwork;
+
+import javafx.scene.image.Image;
 
 public class Album {
 
@@ -43,6 +47,31 @@ public class Album {
         }
     }
 
-    
+    public SongMetadata getMetadata(int songNum) {
+        if (songNum > albumContents.length) {
+            return null;
+        }
+
+        String title;
+        String artist;
+        String album;
+        Image cover;
+
+        try {
+            Tag tag = AudioFileIO.read(albumContents[songNum]).getTag();
+            
+            title = tag.getFirst(FieldKey.TITLE);
+            artist = tag.getFirst(FieldKey.ARTIST);
+            album = tag.getFirst(FieldKey.ALBUM);
+            Artwork artwork = tag.getFirstArtwork();
+            cover = new Image(new ByteArrayInputStream(artwork.getBinaryData()));
+
+        } catch (Exception e) {
+            System.err.println("Error when reading tags");
+            return null;
+        }
+
+        return new SongMetadata(title, artist, album, cover, albumContents[songNum]);
+    }
 
 }

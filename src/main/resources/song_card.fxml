@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.Label?>
+
+
+<HBox alignment="CENTER_LEFT" prefHeight="400.0" prefWidth="600.0" spacing="10.0" fx:controller="com.github.rhys_h_walker.controllers.SongCardController" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fx:id="albumCover" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="songTitle" text="Text" />
+      <Label fx:id="artistName" text="Text" />
+      <Label fx:id="albumName" text="Text" />
+   </children>
+</HBox>
