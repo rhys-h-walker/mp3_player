@@ -47,6 +47,10 @@ public class Album {
         }
     }
 
+    public int getAlbumLength() {
+        return albumContents.length;
+    }
+
     public SongMetadata getMetadata(int songNum) {
         if (songNum > albumContents.length) {
             return null;

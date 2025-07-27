@@ -5,12 +5,18 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.control.Label;
+import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 
 import java.io.File;
 import java.io.IOException;
 
+import com.github.rhys_h_walker.models.PlayBackManager;
+
 public class SongCardController extends HBox {
+
+    private PlayBackManager pb;
+    private String track;
 
     @FXML
     private ImageView albumCover;
@@ -23,6 +29,23 @@ public class SongCardController extends HBox {
 
     @FXML
     private Label albumName;
+
+    @FXML
+    private Button queue;
+
+    @FXML
+    private Button play;
+    
+    @FXML
+    public void initialize() {
+        queue.setOnAction(e -> {
+            pb.queue(track);
+        });
+
+        play.setOnAction(e -> {
+            pb.start(track);
+        });
+    }
 
     public void setTitle(String title) {
         this.songTitle.setText(title);
@@ -38,5 +61,13 @@ public class SongCardController extends HBox {
 
     public void setCover(Image image) {
         albumCover.setImage(image);
+    }
+
+    public void setTrack(String track) {
+        this.track = track;
+    }
+
+    public void setPlaybackManager(PlayBackManager pb) {
+        this.pb = pb;
     }
 }
