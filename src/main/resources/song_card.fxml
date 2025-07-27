@@ -14,7 +14,9 @@
          <Label fx:id="songTitle" text="Text" />
          <Label fx:id="artistName" text="Text" />
       </VBox>
-      <Label fx:id="albumName" text="Text" />
+      <VBox alignment="CENTER_LEFT">
+         <Label fx:id="albumName" text="Text" />
+      </VBox>
       <Button fx:id="queue" text="Queue" />
       <Button fx:id="play" text="Play" />
    </children>
