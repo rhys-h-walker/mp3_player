@@ -48,4 +48,8 @@ public class Player {
     public void stop() {
         curPlayer.stop();
     }
+
+    public void pause() {
+        curPlayer.pause();
+    }
 }

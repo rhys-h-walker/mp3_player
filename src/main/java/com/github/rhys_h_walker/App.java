@@ -10,7 +10,9 @@ import com.github.rhys_h_walker.models.PlayBackManager;
 import com.github.rhys_h_walker.models.Player;
 import com.github.rhys_h_walker.models.Queue;
 import com.github.rhys_h_walker.models.SongMetadata;
+import com.github.rhys_h_walker.models.Factories.NavigationBarFactory;
 import com.github.rhys_h_walker.models.Factories.SongCardFactory;
+import com.github.rhys_h_walker.models.Factories.SongListFactory;
 import com.github.rhys_h_walker.models.general_utilities.FileUtilities;
 
 import javafx.application.Application;
@@ -43,6 +45,9 @@ public class App extends Application {
         Album bcnr = new Album(new File(albumDirectory));
 
         PlayBackManager pbm = new PlayBackManager();
+        SongCardFactory sf = new SongCardFactory();
+        SongListFactory slf = new SongListFactory();
+        NavigationBarFactory nvb = new NavigationBarFactory();
 
         Button begin = new Button("Begin");
         Button skip = new Button("Skip");
@@ -51,24 +56,11 @@ public class App extends Application {
         skip.setOnAction(e -> pbm.skip());
 
         VBox layout = new VBox(10);
-        VBox content = new VBox(2);
-        ScrollPane sp = new ScrollPane(content);
 
+        ScrollPane sp = slf.createScrollPaneForSongs(sf.createSongCardsFromAlbum(bcnr, pbm));
+        VBox navigationBar = nvb.createNavigationBar(pbm);
         
-        sp.setFitToWidth(true);
-        sp.setFitToHeight(false);
-
-        SongCardFactory sf = new SongCardFactory();
-
-
-        for (int x = 0; x < bcnr.getAlbumLength(); x++) {
-            HBox card = sf.createSongCard(bcnr.getMetadata(x), pbm);
-            VBox.setVgrow(card, Priority.NEVER);
-            content.getChildren().addAll(card);
-        }
-        
-             
-        layout.getChildren().addAll(sp, begin, skip);
+        layout.getChildren().addAll(sp, navigationBar);
 
         // Scene and Stage setup
         Scene scene = new Scene(layout, 800, 600);

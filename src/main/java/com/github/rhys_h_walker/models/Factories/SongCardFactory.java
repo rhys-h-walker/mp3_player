@@ -3,6 +3,7 @@ package com.github.rhys_h_walker.models.Factories;
 import java.io.IOException;
 
 import com.github.rhys_h_walker.controllers.SongCardController;
+import com.github.rhys_h_walker.models.Album;
 import com.github.rhys_h_walker.models.PlayBackManager;
 import com.github.rhys_h_walker.models.SongMetadata;
 
@@ -35,6 +36,17 @@ public class SongCardFactory {
         controller.setPlaybackManager(pb);
         
         return card;
+    }
+
+    public HBox[] createSongCardsFromAlbum(Album album, PlayBackManager pb) {
+        
+        HBox[] arr = new HBox[album.getAlbumLength()];
+
+        for (int x = 0; x < album.getAlbumLength(); x++) {
+            arr[x] = createSongCard(album.getMetadata(x), pb);
+        }
+
+        return arr;
     }
 
 }

@@ -30,6 +30,18 @@ public class PlayBackManager {
         loadNextPlayTrack();
     }
 
+    public void pause() {
+        player.pause();
+    }
+
+    public void play() {
+        player.play();
+    }
+
+    public void previous() {
+        System.err.println("Not implemented yet.");
+    }
+
     /**
      * Add a track to the current queue
      * @param filepath
