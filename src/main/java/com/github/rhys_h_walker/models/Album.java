@@ -36,17 +36,6 @@ public class Album {
         return albumContents;
     }
 
-    public void printAlbumContents() {
-        for (File song: albumContents) {
-            try {
-                Tag tag = AudioFileIO.read(song).getTag();
-                System.out.println("Title: " + tag.getFirst(FieldKey.TITLE));
-            } catch (Exception e) {
-                System.err.println("Error when reading tags");
-            }
-        }
-    }
-
     public int getAlbumLength() {
         return albumContents.length;
     }
@@ -56,26 +45,7 @@ public class Album {
             return null;
         }
 
-        String title;
-        String artist;
-        String album;
-        Image cover;
-
-        try {
-            Tag tag = AudioFileIO.read(albumContents[songNum]).getTag();
-            
-            title = tag.getFirst(FieldKey.TITLE);
-            artist = tag.getFirst(FieldKey.ARTIST);
-            album = tag.getFirst(FieldKey.ALBUM);
-            Artwork artwork = tag.getFirstArtwork();
-            cover = new Image(new ByteArrayInputStream(artwork.getBinaryData()));
-
-        } catch (Exception e) {
-            System.err.println("Error when reading tags");
-            return null;
-        }
-
-        return new SongMetadata(title, artist, album, cover, albumContents[songNum]);
+        return new SongMetadata(albumContents[songNum].getAbsolutePath());
     }
 
 }

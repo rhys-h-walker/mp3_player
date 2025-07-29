@@ -11,9 +11,9 @@ import javafx.scene.layout.VBox;
 
 public class NavigationBarFactory {
     
-    public VBox createNavigationBar(PlayBackManager pb) {
+    public HBox createNavigationBar(PlayBackManager pb) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/navigation_bar.fxml"));
-        VBox bar;
+        HBox bar;
         try {
             bar = loader.load();
         } catch (IOException e) {

@@ -1,20 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.Region?>
 
+<HBox alignment="CENTER" fx:controller="com.github.rhys_h_walker.controllers.NavigationBarController" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
 
-<VBox alignment="TOP_CENTER" fx:controller="com.github.rhys_h_walker.controllers.NavigationBarController" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <Label text="Song Progress Placeholder" />
-      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
-         <children>
-            <Button fx:id="previous" mnemonicParsing="false" text="Previous" />
-            <Button fx:id="play" mnemonicParsing="false" text="Play/Pause" />
-            <Button fx:id="next" mnemonicParsing="false" text="Next" />
-         </children>
-      </HBox>
-   </children>
-</VBox>
+   <ImageView fx:id="albumCover" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
+
+   <VBox alignment="CENTER" maxWidth="150.00" prefWidth="150.00">
+      <Label fx:id="songName" text="Play a song" />
+      <Label fx:id="artistName" text="Play a song" />
+   </VBox>
+
+   <Region HBox.hgrow="ALWAYS" />
+
+   <VBox alignment="TOP_CENTER">
+      <children>
+         <Label text="Song Progress Placeholder" />
+         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+            <children>
+               <Button fx:id="previous" mnemonicParsing="false" text="Previous" />
+               <Button fx:id="play" mnemonicParsing="false" text="Play/Pause" />
+               <Button fx:id="next" mnemonicParsing="false" text="Next" />
+            </children>
+         </HBox>
+      </children>
+   </VBox>
+
+   <Region HBox.hgrow="ALWAYS" />
+
+</HBox>

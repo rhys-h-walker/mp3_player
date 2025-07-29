@@ -1,6 +1,12 @@
 package com.github.rhys_h_walker.models;
 
+import java.io.ByteArrayInputStream;
 import java.io.File;
+
+import org.jaudiotagger.audio.AudioFileIO;
+import org.jaudiotagger.tag.FieldKey;
+import org.jaudiotagger.tag.Tag;
+import org.jaudiotagger.tag.images.Artwork;
 
 import javafx.scene.image.Image;
 
@@ -18,6 +24,25 @@ public class SongMetadata {
         this.album = album;
         this.cover = cover;
         this.file = file;
+    }
+
+    public SongMetadata(String filepath) {
+
+        this.file = new File(filepath);
+
+        try {
+            Tag tag = AudioFileIO.read(this.file).getTag();
+            
+            this.title = tag.getFirst(FieldKey.TITLE);
+            this.artist = tag.getFirst(FieldKey.ARTIST);
+            this.album = tag.getFirst(FieldKey.ALBUM);
+            Artwork artwork = tag.getFirstArtwork();
+            this.cover = new Image(new ByteArrayInputStream(artwork.getBinaryData()));
+
+        } catch (Exception e) {
+            System.err.println("Error when reading tags");
+            return;
+        }
     }
 
     public String getTitle() {

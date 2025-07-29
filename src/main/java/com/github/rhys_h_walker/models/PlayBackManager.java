@@ -1,5 +1,7 @@
 package com.github.rhys_h_walker.models;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.scene.media.MediaPlayer;
 
 /**
@@ -9,6 +11,7 @@ public class PlayBackManager {
     
     private Queue queue = new Queue();
     private Player player = new Player();
+    private StringProperty filepath = new SimpleStringProperty();
 
     public PlayBackManager() {
 
@@ -51,11 +54,28 @@ public class PlayBackManager {
     }
 
     /**
+     * Get the path to the currently playing song
+     * @return
+     */
+    public String current() {
+        return this.filepath.get();
+    }
+
+    /**
+     * Return a StringProperty to attatch a listener to
+     * @return
+     */
+    public StringProperty currentTrackProperty() {
+        return this.filepath;
+    }
+
+    /**
      * Load the next track in the queue and start playing,
      * making sure to add the end of media command
      */
     private void loadNextPlayTrack() {
-        MediaPlayer mp = player.loadTrack(queue.next());
+        this.filepath.set(queue.next());
+        MediaPlayer mp = player.loadTrack(this.filepath.get());
 
         // Check if we are out of tracks
         if (mp == null) {

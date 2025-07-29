@@ -58,7 +58,7 @@ public class App extends Application {
         VBox layout = new VBox(10);
 
         ScrollPane sp = slf.createScrollPaneForSongs(sf.createSongCardsFromAlbum(bcnr, pbm));
-        VBox navigationBar = nvb.createNavigationBar(pbm);
+        HBox navigationBar = nvb.createNavigationBar(pbm);
         
         layout.getChildren().addAll(sp, navigationBar);
 
