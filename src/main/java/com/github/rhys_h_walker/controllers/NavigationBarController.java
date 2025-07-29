@@ -39,13 +39,7 @@ public class NavigationBarController {
         albumCover.setImage(new Image(getClass().getResourceAsStream("/images/PlaceholderImage.png")));
 
         play.setOnAction(e -> {
-            if (paused == true) {
-                pb.play();
-                paused = false;
-            } else {
-                pb.pause();
-                paused = true;
-            }
+            pb.pause();
         });
 
         next.setOnAction(e -> {
@@ -62,6 +56,16 @@ public class NavigationBarController {
     }
 
     private void updateCurrentlyPlaying() {
+
+        String t = pb.current();
+
+        if (t == null) {
+            albumCover.setImage(new Image(getClass().getResourceAsStream("/images/PlaceholderImage.png")));
+            songName.setText("Play a song");
+            artistName.setText("");
+            return;
+        }
+
         SongMetadata md = new SongMetadata(pb.current());
         albumCover.setImage(md.getCover());
         songName.setText(md.getTitle());

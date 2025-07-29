@@ -34,7 +34,7 @@ public class PlayBackManager {
     }
 
     public void pause() {
-        player.pause();
+        player.togglePause();
     }
 
     public void play() {
@@ -83,7 +83,8 @@ public class PlayBackManager {
         }
 
         mp.setOnEndOfMedia(() -> {
-            player.loadTrack(queue.next());
+            this.filepath.set(queue.next());
+            player.loadTrack(this.filepath.get());
             player.play();
         });
         player.play();

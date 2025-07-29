@@ -29,6 +29,20 @@ public class Player {
         curPlayer.play();
     }
 
+    public void togglePause() {
+
+        if (curPlayer == null) {
+            return;
+        }
+
+        if (curPlayer.getStatus() == MediaPlayer.Status.PAUSED) {
+            curPlayer.play();
+        } else if (curPlayer.getStatus() == MediaPlayer.Status.PLAYING) {
+            curPlayer.pause();
+        }
+
+    }
+
     public MediaPlayer loadTrack(String mediaPath) {
         // If null nothing to stop
         if (curPlayer != null) {
