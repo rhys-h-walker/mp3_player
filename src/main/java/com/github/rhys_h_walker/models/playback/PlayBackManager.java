@@ -1,5 +1,7 @@
 package com.github.rhys_h_walker.models.playback;
 
+import com.github.rhys_h_walker.Logger;
+
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.scene.media.MediaPlayer;
@@ -24,6 +26,7 @@ public class PlayBackManager {
      * Clear the current queue and begin playing from the given track
      */
     public void start(String filepath) {
+        Logger.logdebug("Starting playback with a new track");
         queue.clearQueue();
         queue.enqueue(filepath);
         loadNextPlayTrack();
@@ -33,6 +36,7 @@ public class PlayBackManager {
      * Skip the current track for the next in the queue
      */
     public void skip() {
+        Logger.logdebug("Skipping current track");
         loadNextPlayTrack();
     }
 
@@ -40,6 +44,7 @@ public class PlayBackManager {
      * Pause the current song
      */
     public void pause() {
+        Logger.logdebug("Pausing current track");
         player.togglePause();
     }
 
@@ -47,6 +52,7 @@ public class PlayBackManager {
      * Play the current song
      */
     public void play() {
+        Logger.logdebug("Playing current track");
         player.play();
     }
 
@@ -54,7 +60,7 @@ public class PlayBackManager {
      * Return to the previous song
      */
     public void previous() {
-        System.err.println("Not implemented yet.");
+        Logger.logwarn("Not implemented yet.");
     }
 
     /**
@@ -62,6 +68,7 @@ public class PlayBackManager {
      * @param filepath Filepath of the track to queue
      */
     public void queue(String filepath) {
+        Logger.logdebug("Enqueue new track " + filepath);
         queue.enqueue(filepath);
     }
 
@@ -70,6 +77,7 @@ public class PlayBackManager {
      * @return Path to current song
      */
     public String current() {
+        Logger.logdebug("Returning current track");
         return this.filepath.get();
     }
 
@@ -78,6 +86,7 @@ public class PlayBackManager {
      * @return The StringProperty to attatch a listener to
      */
     public StringProperty currentTrackProperty() {
+        Logger.logdebug("Returning current track property");
         return this.filepath;
     }
 
@@ -86,19 +95,24 @@ public class PlayBackManager {
      * making sure to add the end of media command
      */
     private void loadNextPlayTrack() {
+        Logger.logdebug("Loading new track from file");
         this.filepath.set(queue.next());
         MediaPlayer mp = player.loadTrack(this.filepath.get());
 
         // Check if we are out of tracks
         if (mp == null) {
+            Logger.logdebug("Out of tracks to play, null code received");
             return;
         }
 
+        Logger.logdebug("Attaching end of media to current track");
         mp.setOnEndOfMedia(() -> {
             this.filepath.set(queue.next());
             player.loadTrack(this.filepath.get());
             player.play();
         });
+
+        Logger.logdebug("Playing new track");
         player.play();
     }
 

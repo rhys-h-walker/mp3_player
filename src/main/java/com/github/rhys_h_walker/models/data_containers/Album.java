@@ -6,6 +6,7 @@ import java.util.Arrays;
 import org.jaudiotagger.audio.AudioFileIO;
 import org.jaudiotagger.tag.FieldKey;
 
+import com.github.rhys_h_walker.Logger;
 import com.github.rhys_h_walker.models.FileLocator;
 
 public class Album {
@@ -20,13 +21,15 @@ public class Album {
      * @param albumLocation The directory that the album should be built from
      */
     public Album(File albumLocation) {
+        Logger.logdebug("Creating a new file Album from a filepath");
         albumContents = FileLocator.getFilesForDirectory(albumLocation.getAbsolutePath());
-            
+        
+        Logger.logdebug("Sorting the file objects by their track #");
         Arrays.sort(albumContents, (a, b) -> {
             try {
                 return Integer.parseInt(AudioFileIO.read(a).getTag().getFirst(FieldKey.TRACK)) - Integer.parseInt(AudioFileIO.read(b).getTag().getFirst(FieldKey.TRACK));
             } catch (Exception e) {
-                System.err.println("Error when sorting albumContents");
+                Logger.logerror("Error when sorting albumContents");
                 return 0;
             }
         });
@@ -55,6 +58,7 @@ public class Album {
      */
     public SongMetadata getMetadata(int songNum) {
         if (songNum > albumContents.length) {
+            Logger.logerror("Attempting to get a track number which does not exist for the given album");
             return null;
         }
 

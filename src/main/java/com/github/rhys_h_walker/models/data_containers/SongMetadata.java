@@ -8,6 +8,8 @@ import org.jaudiotagger.tag.FieldKey;
 import org.jaudiotagger.tag.Tag;
 import org.jaudiotagger.tag.images.Artwork;
 
+import com.github.rhys_h_walker.Logger;
+
 import javafx.scene.image.Image;
 
 public class SongMetadata {
@@ -27,6 +29,9 @@ public class SongMetadata {
      * @param file
      */
     public SongMetadata(String title, String artist, String album, Image cover, File file) {
+
+        Logger.logdebug("Creating metadata from all fields specified");
+
         this.title = title;
         this.artist = artist;
         this.album = album;
@@ -40,6 +45,8 @@ public class SongMetadata {
      */
     public SongMetadata(String filepath) {
 
+        Logger.logdebug("Creating metadata object from file location");
+
         this.file = new File(filepath);
 
         try {
@@ -52,7 +59,7 @@ public class SongMetadata {
             this.cover = new Image(new ByteArrayInputStream(artwork.getBinaryData()));
 
         } catch (Exception e) {
-            System.err.println("Error when reading tags");
+            Logger.logerror("Error when reading tags");
             return;
         }
     }

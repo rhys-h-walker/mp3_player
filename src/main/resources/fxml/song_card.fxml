@@ -8,7 +8,7 @@
 <?import javafx.scene.control.Button?>
 
 
-<HBox alignment="CENTER_LEFT" spacing="10.0" fx:controller="com.github.rhys_h_walker.controllers.SongCardController" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<HBox alignment="CENTER_LEFT" spacing="10.0" fx:controller="com.github.rhys_h_walker.controllers.SongCardController" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <ImageView fx:id="albumCover" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
 

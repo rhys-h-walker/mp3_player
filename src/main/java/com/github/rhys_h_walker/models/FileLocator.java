@@ -8,6 +8,7 @@ import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
+import com.github.rhys_h_walker.Logger;
 import com.github.rhys_h_walker.models.general_utilities.FileUtilities;
 
 public class FileLocator {
@@ -22,9 +23,11 @@ public class FileLocator {
         File location = new File(directory);
 
         if (location.listFiles() == null) {
-            System.err.println("Location either did not exist or was null");
+            Logger.logerror("Location either did not exist or was null");
             return new File[0]; // Return empty array instead of null
         }
+
+        Logger.logdebug("Locating files with extension .mp3");
 
         File[] filtered = location.listFiles(file -> FileUtilities.getExtension(file.toString()).equals(".mp3"));
         return filtered != null ? filtered : new File[0];
@@ -40,9 +43,11 @@ public class FileLocator {
         File location = new File(directory);
 
         if (!location.isDirectory()) {
-            System.err.println("Provided path is not a valid directory: " + directory);
+            Logger.logerror("Provided path is not a valid directory: " + directory);
             return new File[0];
         }
+
+        Logger.logdebug("Locating subdirectories");
 
         File[] subdirs = location.listFiles(File::isDirectory);
         return subdirs != null ? subdirs : new File[0];
@@ -53,6 +58,7 @@ public class FileLocator {
      * @return
      */
     public static File getMP3Directory() {
+        Logger.logdebug("Locating MP3Player directory");
         return new File(System.getProperty("user.home")+File.separator+"MP3Player");
     }
 
@@ -61,6 +67,7 @@ public class FileLocator {
      * @return
      */
     public static File createMP3Directory() {
+        Logger.logdebug("Creating MP3Player directory");
         File locationsFile = new File(System.getProperty("user.home")+File.separator+"MP3Player");
         locationsFile.mkdirs();
         return locationsFile;
@@ -71,12 +78,14 @@ public class FileLocator {
      */
     public static void addToLocationsFile(String musicDirectory) {
 
+        Logger.logdebug("Getting MP3Player directory");
         String fileLocation = System.getProperty("user.home") + 
                         File.separator+"MP3Player";
 
         if (Files.exists(Paths.get(fileLocation)));
 
         try {
+            Logger.logdebug("Creating new PrintWriter");
             PrintWriter pw = new PrintWriter(
                 new BufferedWriter(
                     new FileWriter(
@@ -88,10 +97,11 @@ public class FileLocator {
                 true
             );
 
+            Logger.logdebug("Writing to directory");
             pw.println(musicDirectory);
             pw.close();
         } catch (IOException e) {
-            System.err.println("Failed to create printwriter, exiting");
+            Logger.logerror("Failed to create printwriter, exiting");
             return;
         }
 

@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 
+import com.github.rhys_h_walker.Logger;
 import com.github.rhys_h_walker.models.playback.PlayBackManager;
 
 public class SongCardController extends HBox {
@@ -34,6 +35,8 @@ public class SongCardController extends HBox {
     
     @FXML
     public void initialize() {
+        Logger.logdebug("Initializing song card");
+
         queue.setOnAction(e -> {
             pb.queue(track);
         });

@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.layout.Region?>
 
-<HBox alignment="CENTER" fx:controller="com.github.rhys_h_walker.controllers.NavigationBarController" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<HBox alignment="CENTER" fx:controller="com.github.rhys_h_walker.controllers.NavigationBarController" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
 
    <ImageView fx:id="albumCover" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
 

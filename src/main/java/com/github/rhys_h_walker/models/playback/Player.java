@@ -2,6 +2,8 @@ package com.github.rhys_h_walker.models.playback;
 
 import java.io.File;
 
+import com.github.rhys_h_walker.Logger;
+
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
@@ -29,6 +31,7 @@ public class Player {
     public void play() {
 
         if (curPlayer == null) {
+            Logger.logerror("MediaPlayer null when attempting to play a track");
             return;
         }
 
@@ -41,12 +44,15 @@ public class Player {
     public void togglePause() {
 
         if (curPlayer == null) {
+            Logger.logwarn("Attempting to pause when track null");
             return;
         }
 
         if (curPlayer.getStatus() == MediaPlayer.Status.PAUSED) {
+            Logger.logdebug("Resuming track");
             curPlayer.play();
         } else if (curPlayer.getStatus() == MediaPlayer.Status.PLAYING) {
+            Logger.logdebug("Pausing track");
             curPlayer.pause();
         }
 
@@ -59,13 +65,17 @@ public class Player {
      * @return The MediaPlayer object
      */
     public MediaPlayer loadTrack(String mediaPath) {
+        Logger.logdebug("Loading new track");
+
         // If null nothing to stop
         if (curPlayer != null) {
+            Logger.logdebug("Stopping current track");
             stop();
         }
 
         // Null path acts as a stop code essentially
         if (mediaPath == null) {
+            Logger.logdebug("New path is null, stopping playback");
             curPlayer = null;
             return null;
         }
@@ -78,6 +88,7 @@ public class Player {
      * Stop playback of the current object
      */
     public void stop() {
+        Logger.logdebug("Stopping playback");
         curPlayer.stop();
     }
 }

@@ -2,6 +2,7 @@ package com.github.rhys_h_walker.models.factories;
 
 import java.io.IOException;
 
+import com.github.rhys_h_walker.Logger;
 import com.github.rhys_h_walker.controllers.SongCardController;
 import com.github.rhys_h_walker.models.data_containers.Album;
 import com.github.rhys_h_walker.models.data_containers.SongMetadata;
@@ -24,16 +25,21 @@ public class SongCardFactory {
      */
     public HBox createSongCard(SongMetadata meta, PlayBackManager pb) {
         
+        Logger.logdebug("Loading fxml file song_card");
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/song_card.fxml"));
         HBox card;
         try {
+            Logger.logdebug("Getting hbox from file");
             card = loader.load();
         } catch (IOException e) {
-            System.err.println("Cannot open fxml file " + e.toString());
+            Logger.logerror("Cannot open fxml file " + e.toString());
             return null;
         }
         
+        Logger.logdebug("Getting controller from FXML loader");
         SongCardController controller = loader.getController();
+
+        Logger.logdebug("Setting card details");
         controller.setTitle(meta.getTitle());
         controller.setArtist(meta.getArtist());
         controller.setAlbum(meta.getAlbum());
@@ -51,6 +57,8 @@ public class SongCardFactory {
      * @return A completed Array of SongCard objects
      */
     public HBox[] createSongCardsFromAlbum(Album album, PlayBackManager pb) {
+        
+        Logger.logdebug("Iterating over each song card");
         
         HBox[] arr = new HBox[album.getAlbumLength()];
 
