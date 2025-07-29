@@ -14,7 +14,10 @@ public class Album {
     
     /**
      * Take a location of the album and read all mp3 files from within
-     * @param albumLocation
+     * 
+     * Read a from the file and sort the songs in order based on the TRACK number field
+     * 
+     * @param albumLocation The directory that the album should be built from
      */
     public Album(File albumLocation) {
         albumContents = FileLocator.getFilesForDirectory(albumLocation.getAbsolutePath());
@@ -29,14 +32,27 @@ public class Album {
         });
     }
 
+    /**
+     * Get a full list of files in the album
+     * @return
+     */
     public File[] getAlbumFiles() {
         return albumContents;
     }
 
+    /**
+     * Get the total number of tracks in the album
+     * @return
+     */
     public int getAlbumLength() {
         return albumContents.length;
     }
 
+    /**
+     * Retrueve metadata on a specific track in the album
+     * @param songNum
+     * @return
+     */
     public SongMetadata getMetadata(int songNum) {
         if (songNum > albumContents.length) {
             return null;

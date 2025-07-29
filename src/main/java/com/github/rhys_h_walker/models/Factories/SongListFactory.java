@@ -10,6 +10,11 @@ import javafx.scene.layout.HBox;
 
 public class SongListFactory {
     
+    /**
+     * Create a ScrollPane full of SongCards
+     * @param songCards Array of SongCards
+     * @return The completed ScrollPane
+     */
     public ScrollPane createScrollPaneForSongs(HBox[] songCards) {
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/list_view.fxml"));

@@ -16,6 +16,12 @@ import javafx.scene.layout.HBox;
 
 public class SongCardFactory {
     
+    /**
+     * Create a song card from metadata and a playback manager
+     * @param meta Metadata for the song
+     * @param pb Playback manager required for buttons
+     * @return The completed songCard
+     */
     public HBox createSongCard(SongMetadata meta, PlayBackManager pb) {
         
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/song_card.fxml"));
@@ -38,6 +44,12 @@ public class SongCardFactory {
         return card;
     }
 
+    /**
+     * Create a full albums worth of song cards
+     * @param album Album containing information about the songs
+     * @param pb Playback manager needed for buttons
+     * @return A completed Array of SongCard objects
+     */
     public HBox[] createSongCardsFromAlbum(Album album, PlayBackManager pb) {
         
         HBox[] arr = new HBox[album.getAlbumLength()];

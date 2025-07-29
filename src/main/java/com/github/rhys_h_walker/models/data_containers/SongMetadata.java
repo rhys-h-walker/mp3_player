@@ -18,6 +18,14 @@ public class SongMetadata {
     private Image cover;
     private File file;
 
+    /**
+     * Create a metadata object with each of the required values
+     * @param title
+     * @param artist
+     * @param album
+     * @param cover
+     * @param file
+     */
     public SongMetadata(String title, String artist, String album, Image cover, File file) {
         this.title = title;
         this.artist = artist;
@@ -26,6 +34,10 @@ public class SongMetadata {
         this.file = file;
     }
 
+    /**
+     * Create a metadata object from a filepath
+     * @param filepath The path to the metadata object
+     */
     public SongMetadata(String filepath) {
 
         this.file = new File(filepath);

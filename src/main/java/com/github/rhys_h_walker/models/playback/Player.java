@@ -15,10 +15,17 @@ public class Player {
 
     private MediaPlayer curPlayer;
 
+    /**
+     * Constructor does nothing
+     */
     public Player() {
         // Do nothing, not setup required
     }
 
+    /**
+     * Begin playback of the currently loaded track
+     * If none loaded nothing will happen
+     */
     public void play() {
 
         if (curPlayer == null) {
@@ -28,6 +35,9 @@ public class Player {
         curPlayer.play();
     }
 
+    /**
+     * Toggles the current tracks paused status
+     */
     public void togglePause() {
 
         if (curPlayer == null) {
@@ -42,6 +52,12 @@ public class Player {
 
     }
 
+    /**
+     * Load a track int the current mediaPlayer.
+     * This stops the old track and deassigns it to be collected by the GC
+     * @param mediaPath The path to the mp3 file to load
+     * @return The MediaPlayer object
+     */
     public MediaPlayer loadTrack(String mediaPath) {
         // If null nothing to stop
         if (curPlayer != null) {
@@ -58,11 +74,10 @@ public class Player {
         return curPlayer;
     }
 
+    /**
+     * Stop playback of the current object
+     */
     public void stop() {
         curPlayer.stop();
-    }
-
-    public void pause() {
-        curPlayer.pause();
     }
 }

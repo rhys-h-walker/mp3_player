@@ -13,8 +13,11 @@ public class PlayBackManager {
     private Player player = new Player();
     private StringProperty filepath = new SimpleStringProperty();
 
+    /**
+     * Constructor does nothing
+     */
     public PlayBackManager() {
-
+        // Do nothing, not setup required
     }
 
     /**
@@ -33,21 +36,30 @@ public class PlayBackManager {
         loadNextPlayTrack();
     }
 
+    /**
+     * Pause the current song
+     */
     public void pause() {
         player.togglePause();
     }
 
+    /**
+     * Play the current song
+     */
     public void play() {
         player.play();
     }
 
+    /**
+     * Return to the previous song
+     */
     public void previous() {
         System.err.println("Not implemented yet.");
     }
 
     /**
      * Add a track to the current queue
-     * @param filepath
+     * @param filepath Filepath of the track to queue
      */
     public void queue(String filepath) {
         queue.enqueue(filepath);
@@ -55,7 +67,7 @@ public class PlayBackManager {
 
     /**
      * Get the path to the currently playing song
-     * @return
+     * @return Path to current song
      */
     public String current() {
         return this.filepath.get();
@@ -63,7 +75,7 @@ public class PlayBackManager {
 
     /**
      * Return a StringProperty to attatch a listener to
-     * @return
+     * @return The StringProperty to attatch a listener to
      */
     public StringProperty currentTrackProperty() {
         return this.filepath;

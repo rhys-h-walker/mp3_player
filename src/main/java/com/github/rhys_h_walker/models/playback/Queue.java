@@ -16,7 +16,7 @@ public class Queue {
 
     /**
      * Get the next element in queue if one exists
-     * @return
+     * @return The filepath to the next track
      */
     public String next() {
 
@@ -29,10 +29,17 @@ public class Queue {
         return n;
     }
 
+    /**
+     * Add a song to the current queue
+     * @param track The string filepath for the track to queue
+     */
     public void enqueue(String track) {
         queue.add(track);
     }
 
+    /**
+     * Clear all currently queued songs
+     */
     public void clearQueue() {
         queue.clear();
     }
