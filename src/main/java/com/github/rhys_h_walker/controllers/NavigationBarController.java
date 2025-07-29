@@ -1,7 +1,7 @@
 package com.github.rhys_h_walker.controllers;
 
-import com.github.rhys_h_walker.models.PlayBackManager;
-import com.github.rhys_h_walker.models.SongMetadata;
+import com.github.rhys_h_walker.models.data_containers.SongMetadata;
+import com.github.rhys_h_walker.models.playback.PlayBackManager;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -29,7 +29,6 @@ public class NavigationBarController {
     @FXML
     private Button play;
 
-    private boolean paused = true;
     private PlayBackManager pb;
 
     public void initializeBar(PlayBackManager pb) {

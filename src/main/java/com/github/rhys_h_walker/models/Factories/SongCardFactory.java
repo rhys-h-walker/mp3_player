@@ -1,11 +1,11 @@
-package com.github.rhys_h_walker.models.Factories;
+package com.github.rhys_h_walker.models.factories;
 
 import java.io.IOException;
 
 import com.github.rhys_h_walker.controllers.SongCardController;
-import com.github.rhys_h_walker.models.Album;
-import com.github.rhys_h_walker.models.PlayBackManager;
-import com.github.rhys_h_walker.models.SongMetadata;
+import com.github.rhys_h_walker.models.data_containers.Album;
+import com.github.rhys_h_walker.models.data_containers.SongMetadata;
+import com.github.rhys_h_walker.models.playback.PlayBackManager;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.HBox;
@@ -18,7 +18,7 @@ public class SongCardFactory {
     
     public HBox createSongCard(SongMetadata meta, PlayBackManager pb) {
         
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/song_card.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/song_card.fxml"));
         HBox card;
         try {
             card = loader.load();

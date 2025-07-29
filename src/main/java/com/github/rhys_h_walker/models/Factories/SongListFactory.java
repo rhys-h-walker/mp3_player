@@ -1,4 +1,4 @@
-package com.github.rhys_h_walker.models.Factories;
+package com.github.rhys_h_walker.models.factories;
 
 import java.io.IOException;
 
@@ -12,7 +12,7 @@ public class SongListFactory {
     
     public ScrollPane createScrollPaneForSongs(HBox[] songCards) {
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/list_view.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/list_view.fxml"));
         ScrollPane sp;
 
         try {

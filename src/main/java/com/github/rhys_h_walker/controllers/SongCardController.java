@@ -1,17 +1,13 @@
 package com.github.rhys_h_walker.controllers;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.control.Label;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 
-import java.io.File;
-import java.io.IOException;
-
-import com.github.rhys_h_walker.models.PlayBackManager;
+import com.github.rhys_h_walker.models.playback.PlayBackManager;
 
 public class SongCardController extends HBox {
 

@@ -1,4 +1,4 @@
-package com.github.rhys_h_walker.models;
+package com.github.rhys_h_walker.models.playback;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;

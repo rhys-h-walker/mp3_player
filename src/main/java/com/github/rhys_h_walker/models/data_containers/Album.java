@@ -1,15 +1,12 @@
-package com.github.rhys_h_walker.models;
+package com.github.rhys_h_walker.models.data_containers;
 
-import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.util.Arrays;
 
 import org.jaudiotagger.audio.AudioFileIO;
 import org.jaudiotagger.tag.FieldKey;
-import org.jaudiotagger.tag.Tag;
-import org.jaudiotagger.tag.images.Artwork;
 
-import javafx.scene.image.Image;
+import com.github.rhys_h_walker.models.FileLocator;
 
 public class Album {
 

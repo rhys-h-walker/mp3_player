@@ -1,4 +1,4 @@
-package com.github.rhys_h_walker.models;
+package com.github.rhys_h_walker.models.data_containers;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;

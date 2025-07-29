@@ -1,8 +1,6 @@
-package com.github.rhys_h_walker.models;
+package com.github.rhys_h_walker.models.playback;
 
 import java.util.ArrayList;
-
-import javafx.scene.media.MediaPlayer;
 
 /**
  * A basic queue which can be used for playing tracks
